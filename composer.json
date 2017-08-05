@@ -1,0 +1,19 @@
+{
+    "name": "pavlyshyn/trading",
+    "authors": [
+        {
+            "name": "Roman Pavlyshyn",
+            "email": "roman@pavlyshyn.com"
+        }
+    ],
+    "require": {
+        "pavlyshyn/bittrex": "^0.1.0",
+        "pavlyshyn/bitfinex": "^0.1.0",
+        "andreas-glaser/poloniex-php-client": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pavlyshyn\\Trading\\": "src"
+        }
+    }
+}
