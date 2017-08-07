@@ -4,19 +4,19 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Pavlyshyn\Trading\Bitfinex;
 use Pavlyshyn\Trading\Bittrex;
-//use Pavlyshyn\Trading\Poloniex;
+use Pavlyshyn\Trading\Poloniex;
 
 
 $bitfinex = new Bitfinex();
 $bittrex = new Bittrex();
-//$poloniex = new Poloniex();
+$poloniex = new Poloniex();
 
 $bitfinexResult = $bitfinex->marketSummaries();
 $bittrexResult = $bittrex->marketSummaries();
-//$poloniexResult = $poloniex->marketSummaries();
+$poloniexResult = $poloniex->marketSummaries();
 
 //print_r($bitfinexResult[0]);
-//print_r($poloniexResult);
+print_r($poloniexResult);
 
 foreach($bitfinexResult as $item) {
     if($item['SYMBOL'] == 'tBTCUSD') {
