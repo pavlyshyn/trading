@@ -64,7 +64,7 @@ class Bitfinex implements TradingInterface {
             $result[$j]['HIGH'] = $array[$j][9];
             $result[$j]['LOW'] = $array[$j][10];
 
-            $orders = $this->clientV1->get_book();
+            $orders = $this->clientV1->get_book(str_replace('t', '', $result[$j]['SYMBOL']));
             $result[$j]['BUY_VOLUME'] = 0;
             $result[$j]['SELL_VOLUME'] = 0;
             foreach($orders['bids'] as $order) {
