@@ -36,6 +36,9 @@ class Poloniex implements TradingInterface {
                 $result[$j]['VOLUME'] = $v[$j]['baseVolume'];
                 $result[$j]['HIGH'] = $v[$j]['high24hr'];
                 $result[$j]['LOW'] = $v[$j]['low24hr'];
+
+                $result[$j]['BUY_VOLUME'] = 0;
+                $result[$j]['SELL_VOLUME'] = 0;
             }
         }
 
