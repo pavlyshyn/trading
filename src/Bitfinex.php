@@ -13,19 +13,6 @@ class Bitfinex implements TradingInterface {
     protected $clientV1 = null;
     protected $clientV2 = null;
 
-    private $keys = [
-        'SYMBOL',
-        'BID',
-        'BID_SIZE',
-        'ASK',
-        'ASK_SIZE',
-        'DAILY_CHANGE',
-        'DAILY_CHANGE_PERC',
-        'LAST_PRICE',
-        'VOLUME',
-        'HIGH',
-        'LOW'
-    ];
 
     private $symbolsMap = [];
 
@@ -77,6 +64,15 @@ class Bitfinex implements TradingInterface {
             $result[$j]['HIGH'] = $array[$j][9];
             $result[$j]['LOW'] = $array[$j][10];
 
+            $orders = $this->clientV1->get_book();
+            $result[$j]['BUY_VOLUME'] = 0;
+            $result[$j]['SELL_VOLUME'] = 0;
+            foreach($orders['bids'] as $order) {
+                $result[$j]['BUY_VOLUME'] += $order['amount'];
+            }
+            foreach($orders['asks'] as $order) {
+                $result[$j]['SELL_VOLUME'] += $order['amount'];
+            }
         }
 
         return $result;

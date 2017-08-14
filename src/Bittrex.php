@@ -57,9 +57,23 @@ class Bittrex implements TradingInterface {
             $result[$j]['VOLUME'] = $VOLUME;
             $result[$j]['HIGH'] = $array[$j]['High'];
             $result[$j]['LOW'] = $array[$j]['Low'];
+
+            $orders = $this->getOrders($result[$j]['SYMBOL']);
+            $result[$j]['BUY_VOLUME'] = 0;
+            $result[$j]['SELL_VOLUME'] = 0;
+            foreach($orders['buy'] as $order) {
+                $result[$j]['BUY_VOLUME'] += $order['Quantity'];
+            }
+            foreach($orders['sell'] as $order) {
+                $result[$j]['SELL_VOLUME'] += $order['Quantity'];
+            }
         }
 
         return $result;
+    }
+
+    private function getOrders($symbol) {
+        return $this->client->orderBook($symbol);
     }
 
 }
